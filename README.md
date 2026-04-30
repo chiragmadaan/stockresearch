@@ -98,25 +98,16 @@ Some LLMs (ChatGPT with browsing, Perplexity, Claude with web search tools) can 
 
 | Framework Section | Covered by PDF Uploads? | Still Need to Type In? |
 |---|---|---|
-| 1A. Business Model | Yes (10-K has business overview) | No |
-| 1B. Competitive Moat | Yes (10-K risk factors + LLM knowledge) | No |
-| 1C. TAM | Partially (10-K + LLM estimates) | No |
-| 1D. Management Quality | Yes (proxy statement has ownership & comp) | No |
-| 2A. Profitability Metrics | Yes (10-Q / 10-K income statement) | No |
-| 2B. Balance Sheet | Yes (10-Q / 10-K balance sheet) | No |
-| 2C. Cash Flow Quality | Yes (10-Q / 10-K cash flow statement) | No |
-| 2D. Red Flag Scan | Yes (LLM cross-references the uploaded financials) | No |
-| 3A. Historical Growth | Yes (10-K has multi-year comparisons) | No |
-| 3B. Growth Drivers | Yes (earnings call transcript) | No |
-| 3C. Hidden Gem Test | Partially | Yes — analyst count, insider buying |
-| 3D. Unit Economics | Partially (if disclosed in filings/call) | Sometimes — depends on company |
-| 4A. Relative Valuation | No — filings don't contain market multiples | **Yes — P/E, EV/EBITDA, peers** |
-| 4B. DCF | Yes (FCF from cash flow statement) | Yes — current price for margin of safety |
-| 4C. Scenario Analysis | Yes (LLM synthesizes from uploaded data) | No |
-| 4D. Valuation Context | Partially | Yes — current price context |
-| 5A. Catalysts | Yes (earnings call, press release) | Partially — upcoming events |
-| 5B. Risk Assessment | Yes (10-K risk factors + LLM knowledge) | No |
-| 5C. Short Interest | No — not in company filings | **Yes — short %, institutional %** |
+| Step 1: Archetype Classification | LLM does this from all provided data | No |
+| Sec 2: Business Quality | Yes (10-K business overview, risk factors, proxy) | No |
+| Sec 3: Financial Health | Yes (10-Q / 10-K financials) | No |
+| Sec 4: Growth Profile | Yes (10-K multi-year + earnings call) | No |
+| Sec 5A: Relative Valuation | No — filings don't contain market multiples | **Yes — P/E, EV/EBITDA, peers** |
+| Sec 5B-D: DCF & Scenarios | Yes (FCF from filings) | Yes — current price |
+| Sec 6A: Catalysts | Yes (earnings call, press release) | Partially — upcoming events |
+| Sec 6B: Risk Assessment | Yes (10-K risk factors + LLM knowledge) | No |
+| Sec 6C: Short Interest | No — not in company filings | **Yes — short %, institutional %** |
+| Sec 7: Archetype Fit Test | Partially (LLM uses all uploaded data) | Yes — analyst count, insider buying |
 
 **Rule of thumb:** PDFs cover ~80% of what you need. The remaining 20% is market-priced data (multiples, short interest, insider activity) that you type in manually from Yahoo Finance or Finviz in ~2 minutes.
 
@@ -174,19 +165,19 @@ and a 3-sentence thesis.
 ### Quick Screen (for narrowing a watchlist before full deep-dive)
 
 ```
-I'm screening these tickers for hidden gem potential. For each one,
-do a quick pass on ONLY these three sections from my framework:
-- Section 1A (What does the company do?)
-- Section 3C (The Hidden Gem Test)
-- Section 4A (Relative Valuation — use the multiples I provide)
+I'm screening these tickers for investment potential. For each one,
+do a quick pass on ONLY these steps from my framework:
+- Step 1 (Archetype Classification — which archetype fits?)
+- Section 2A (What does the company do?)
+- Section 5A (Relative Valuation — use the multiples I provide)
 
-Tickers and current forward P/E ratios:
-[TICKER1]: P/E [X], P/S [X]
-[TICKER2]: P/E [X], P/S [X]
+Tickers and current data:
+[TICKER1]: P/E [X], P/S [X], # analysts [X]
+[TICKER2]: P/E [X], P/S [X], # analysts [X]
 ...
 
-Rank them by hidden gem potential and tell me which 2-3 deserve
-a full deep-dive with the complete framework.
+For each ticker, state the archetype, a one-line thesis, and
+whether it deserves a full deep-dive. Rank them.
 ```
 
 ### Earnings Call Analysis (just upload the transcript)
@@ -194,12 +185,12 @@ a full deep-dive with the complete framework.
 ```
 I've uploaded the latest earnings call transcript for [TICKER].
 
-Using the framework sections on Growth Drivers (3B), Hidden Gem
-Test (3C), and Catalysts (5A), analyze this transcript. Focus on:
-1. Is management guiding for accelerating or decelerating growth?
-2. Any new products, markets, or partnerships mentioned?
-3. What risks or headwinds did they acknowledge?
-4. What's the overall tone — confident, cautious, or defensive?
+Using the framework, analyze this transcript. Focus on:
+1. Which archetype(s) does this company fit based on the call?
+2. Is management guiding for accelerating or decelerating growth?
+3. Any new products, markets, or partnerships mentioned?
+4. What risks or headwinds did they acknowledge?
+5. What's the overall tone — confident, cautious, or defensive?
 ```
 
 ---
@@ -208,9 +199,11 @@ Test (3C), and Catalysts (5A), analyze this transcript. Focus on:
 
 1. **PDF uploads make this fast.** Download 2-3 PDFs from SEC EDGAR (~3 minutes), type in market multiples from Finviz (~2 minutes), upload everything with the framework. Total: ~5 minutes of your time, then the LLM does hours of analysis work.
 
-2. **Where this framework gives you edge:** The "Hidden Gem Test" in Section 3C is the most important part for finding multi-baggers. Mainstream megacaps score high on everything except those criteria — they're already fully discovered. Under-followed stocks with accelerating metrics at an inflection point are where exponential returns come from.
+2. **The archetype classification is the most important step.** It tells the LLM what to emphasize. A Quality Compounder analysis focuses on moat durability and ROIC consistency; a Turnaround analysis focuses on catalysts and balance sheet survival; a Hidden Gem analysis focuses on discovery and inflection points. Without the archetype, every stock gets the same generic treatment.
 
-3. **Batch screening idea:** Use the Quick Screen prompt template above with 10-20 tickers. You only need to gather P/E and P/S ratios for this pass (2 minutes on Finviz). Then do the full deep-dive with PDF uploads only for the 2-3 that pass the screen.
+3. **Stocks can fit multiple archetypes — that's often a strong signal.** A company that's both a Hidden Gem and GARP (under-followed but growing fast at a reasonable price) or a Turnaround and Deep Value (beaten down and trading below book) often represents the best risk/reward.
+
+4. **Batch screening idea:** Use the Quick Screen prompt template above with 10-20 tickers. You only need to gather P/E, P/S, and analyst count for this pass (2 minutes on Finviz). Then do the full deep-dive with PDF uploads only for the 2-3 that pass the screen.
 
 4. **Iteration:** After you use this on 5-10 stocks, you'll notice which sections you consistently find most useful and which feel like filler. Trim and customize accordingly — frameworks work best when they're yours.
 
