@@ -2,6 +2,8 @@
 
 How to use the [Stock Research Framework](stock_research_framework.md) with LLMs to analyze stocks.
 
+> **Disclaimer:** This is an educational framework for organizing your own research with an LLM. It is not investment advice, and LLM output can be wrong — verify every number and conclusion independently before acting.
+
 ---
 
 ## Data Gathering (Do This Before Prompting the LLM)
@@ -26,7 +28,7 @@ Modern LLMs (Claude, ChatGPT, Gemini) can read uploaded PDFs and extract the num
 
 ```
 CURRENT PRICE: $[X] | MARKET CAP: $[X]B
-P/E (TTM): [X] | P/E (Forward): [X] | EV/EBITDA: [X] | P/FCF: [X] | PEG: [X]
+P/E (TTM): [X] | P/E (Forward): [X] | EV/EBITDA: [X] | P/FCF: [X] | P/S: [X] | PEG: [X]
 5-Year Avg P/E: [X]
 Peer Median P/E: [X] | Peer Median EV/EBITDA: [X]
 Short interest: [X]% of float
@@ -122,7 +124,7 @@ I've uploaded [COMPANY]'s latest 10-Q, 10-K, and earnings call transcript.
 Here is the market data as of [DATE]:
 
 CURRENT PRICE: $[X] | MARKET CAP: $[X]B
-P/E (TTM): [X] | P/E (Forward): [X] | EV/EBITDA: [X] | P/FCF: [X] | PEG: [X]
+P/E (TTM): [X] | P/E (Forward): [X] | EV/EBITDA: [X] | P/FCF: [X] | P/S: [X] | PEG: [X]
 5-Year Avg P/E: [X]
 Peer Median P/E: [X] | Peer Median EV/EBITDA: [X]
 Short interest: [X]% of float
@@ -205,11 +207,11 @@ Using the framework, analyze this transcript. Focus on:
 
 4. **Batch screening idea:** Use the Quick Screen prompt template above with 10-20 tickers. You only need to gather P/E, P/S, and analyst count for this pass (2 minutes on Finviz). Then do the full deep-dive with PDF uploads only for the 2-3 that pass the screen.
 
-4. **Iteration:** After you use this on 5-10 stocks, you'll notice which sections you consistently find most useful and which feel like filler. Trim and customize accordingly — frameworks work best when they're yours.
+5. **Iteration:** After you use this on 5-10 stocks, you'll notice which sections you consistently find most useful and which feel like filler. Trim and customize accordingly — frameworks work best when they're yours.
 
-5. **Best LLM setup for this workflow:** Use an LLM that supports file uploads and has a large context window. Claude (200K context), ChatGPT (128K), and Gemini (1M+) all work. A 10-Q is typically 30-60 pages, a 10-K is 80-200 pages — make sure your LLM can handle the file size. If the 10-K is too large, upload just the 10-Q (latest quarter) + earnings call transcript instead.
+6. **Best LLM setup for this workflow:** Use an LLM that supports file uploads and has a large context window. Most current frontier models (Claude, ChatGPT, Gemini) offer large context windows — roughly 128K to 1M+ tokens — that comfortably fit multiple filings; check your model's current limits, since they change often. A 10-Q is typically 30-60 pages and a 10-K 80-200 pages, so confirm your model's file-size and page limits. If the 10-K is too large, upload just the 10-Q (latest quarter) + earnings call transcript instead.
 
-6. **Automate the market data with a financial API.** Instead of manually typing in price, multiples, short interest, and analyst data, you can hook up a financial data API to fetch it programmatically. A small script that takes a ticker and outputs the formatted market data block saves you the 2 minutes of manual lookup per stock.
+7. **Automate the market data with a financial API.** Instead of manually typing in price, multiples, short interest, and analyst data, you can hook up a financial data API to fetch it programmatically. A small script that takes a ticker and outputs the formatted market data block saves you the 2 minutes of manual lookup per stock.
 
    **Free APIs (no cost, good for individual investors):**
    - **Yahoo Finance (`yfinance` Python library)** — no API key needed. Covers price, P/E, EV/EBITDA, P/S, short interest, analyst estimates, insider transactions, and institutional holders. Most popular choice. Unofficial but reliable.

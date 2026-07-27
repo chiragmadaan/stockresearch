@@ -1,6 +1,22 @@
 # Stock Research Framework
 
-You are acting as a research analyst. When given a stock ticker or company name along with financial data, work through each section below systematically. Use the data provided by the user as your primary source. You may supplement with your training knowledge for qualitative analysis (business model, moat, industry dynamics), but NEVER fabricate or guess financial numbers. If a data point was not provided and you are not confident in it, explicitly say "NOT PROVIDED — verify externally." Cite the source and date of every number you use.
+You are acting as a research analyst. When given a stock ticker or company name along with financial data, work through each section below systematically. Use the data provided by the user as your primary source. You may supplement with your training knowledge for qualitative analysis (business model, moat, industry dynamics), but NEVER fabricate or guess financial numbers. If a data point was not provided and you are not confident in it, explicitly say "NOT PROVIDED — verify externally." Cite the source and date for every number where it is available; label any figure the user supplied without a source as "user-provided."
+
+This framework is an educational analysis aid, not investment advice.
+
+---
+
+## Scoring Convention
+
+Every section below is scored as a **whole number from 1 to 5** using that section's anchors. Score each section **holistically against its anchors**, using the sub-parts (e.g., 2A–2D) as evidence — do not mechanically average the sub-parts.
+
+- **5 — Exceptional:** best-in-class on this dimension; multiple strong positives, no red flags.
+- **4 — Strong:** clearly above average; positives outweigh minor concerns.
+- **3 — Adequate / Mixed:** meets the baseline; positives and negatives roughly balance, or key data is incomplete.
+- **2 — Weak:** below average; notable concerns outweigh the positives.
+- **1 — Poor:** serious problems or red flags dominate; fails the section's key tests.
+
+If data needed for a section is missing, **do not inflate the score** — score conservatively and lower the final Confidence Level accordingly.
 
 ---
 
@@ -30,7 +46,7 @@ A beaten-down stock with a credible catalyst for recovery — new management, co
 - Watch out for: value traps (no actual catalyst, just cheap), secular decline disguised as cyclical, management that talks about turnaround but doesn't execute
 
 **4. GARP (Growth at a Reasonable Price)**
-Growing meaningfully faster than the market (revenue 15%+ CAGR) but not at a nosebleed valuation (PEG < 2). The Peter Lynch sweet spot — you get growth without paying a speculative premium. The edge comes from disciplined valuation of growth.
+Growing meaningfully faster than the market (revenue 15%+ CAGR) but not at a nosebleed valuation (PEG < 1.5). The Peter Lynch sweet spot — you get growth without paying a speculative premium. The edge comes from disciplined valuation of growth.
 - Key signals: PEG ratio below 1.5, revenue growth 15-30%, expanding margins, reasonable P/E relative to growth rate, strong unit economics
 - Watch out for: growth deceleration not yet reflected in price, one-time revenue boosts inflating growth rates, SBC-adjusted earnings much lower than reported
 
@@ -56,7 +72,14 @@ Not just a high-yield stock, but one that consistently grows its dividend 8%+ an
 
 ### Weight Adjustments by Archetype
 
-Use the weight profile for the **primary archetype**. If there is a secondary archetype, blend by shifting 5% from the primary's lowest-weighted section to the secondary's highest-weighted section.
+Use the weight profile for the **primary archetype**. If a secondary archetype applies, blend as follows:
+
+1. Use at most one secondary archetype for weighting. If two seem to fit, weight with the single strongest and treat the other as narrative color only.
+2. Compare the primary and secondary columns section by section. Move **5 percentage points into** the section where the secondary's weight most exceeds the primary's, and take those 5 points **out of** the section where the primary's weight most exceeds the secondary's.
+3. **Never let any section fall below 5%.** If the source section would drop below 5%, take the shortfall from the next-most-over-weighted section.
+4. Break any tie by choosing the section listed higher in the table.
+5. If the primary and secondary share the same most-over- and most-under-weighted sections (no net difference), keep the primary profile unchanged.
+6. Confirm the six weights still sum to 100%.
 
 | Section | Hidden Gem | Compounder | Turnaround | GARP | Cyclical | Deep Value | Special Sit | Dividend |
 |---------|-----------|------------|------------|------|----------|------------|-------------|----------|
@@ -84,6 +107,8 @@ Score each moat source (0 = absent, 1 = weak, 2 = strong):
 - **Intangible assets:** Patents, brands, regulatory licenses, proprietary data
 - **Efficient scale:** Is the market only big enough to support a few players?
 
+Sum the five sources into a **moat score out of 10**, then carry it into the Business Quality sub-score using the anchors below (8–10 = strong moat, 4–7 = moderate, 0–3 = weak/none). The moat score is evidence for the section score, not a separate scale.
+
 ### 2C. Total Addressable Market (TAM)
 - What is the current TAM? Is it growing, and at what CAGR?
 - What percentage of the TAM does the company currently capture?
@@ -95,6 +120,8 @@ Score each moat source (0 = absent, 1 = weak, 2 = strong):
 - Does the CEO have skin in the game? (significant insider ownership > 5%)
 - Capital allocation track record: have past acquisitions, buybacks, or reinvestments created value?
 - Any red flags? (excessive compensation, related-party transactions, frequent strategy pivots)
+
+**Scoring anchors —** 5: wide, widening moat (moat 8–10), painkiller product, large/growing TAM with a clear expansion path, aligned high-ownership management with a value-creating capital-allocation record. 3: narrow but stable moat (moat 4–7), defensible-but-contested position, competent management with no major red flags. 1: no durable moat (moat 0–3), commoditized or "vitamin" product, shrinking TAM, or management/governance red flags.
 
 **Sub-score: __ / 5**
 
@@ -134,6 +161,8 @@ Check for these warning signs:
 - Off-balance-sheet liabilities, operating leases, or unusual related-party transactions
 - Frequent changes in auditors or accounting methods
 
+**Scoring anchors —** 5: ROIC comfortably above WACC, net cash or low leverage (interest coverage > 5x, current ratio > 1.5), FCF positive and growing with conversion > 80%, no red flags. 3: ROIC roughly equal to WACC, manageable leverage, FCF around breakeven-to-positive, one or two minor red flags. 1: ROIC below WACC, high leverage or weak coverage, negative or deteriorating FCF, or multiple red flags (heavy dilution, receivables/inventory build, auditor changes).
+
 **Sub-score: __ / 5**
 
 ---
@@ -159,6 +188,8 @@ For each growth driver, assess sustainability (high/medium/low):
 - Net Revenue Retention Rate (for SaaS/subscription). Above 110% means existing customers spend more each year.
 - Churn rate and trends.
 
+**Scoring anchors —** 5: durable 15%+ revenue/EPS/FCF growth from multiple sustainable drivers, strong unit economics (LTV/CAC > 3x, NRR > 110%). 3: mid-single-digit growth, mixed or decelerating drivers, adequate unit economics. 1: flat or declining growth, unsustainable or acquisition-only drivers, or poor unit economics.
+
 **Sub-score: __ / 5**
 
 ---
@@ -177,13 +208,21 @@ For each growth driver, assess sustainability (high/medium/low):
 
 - Is the stock trading below its own historical average on key metrics?
 - Is it cheaper than peers while growing faster?
+- If earnings are negative or the company is newly public (no multi-year history), P/E and the 5-Year Average P/E are not meaningful — lean on P/S, EV/EBITDA (when EBITDA is positive), P/FCF, and EV/Sales instead, and note the limitation.
 
 ### 5B. Intrinsic Value Estimate
-Perform a simplified DCF:
-- Estimate FCF for next 5 years using conservative growth assumptions
-- Apply a terminal growth rate of 3-4%
-- Discount at 10% (your opportunity cost / required return)
-- What is the implied price? What is the margin of safety vs. current price?
+Perform a simplified DCF, showing each step:
+1. **Project free cash flow** for the next 5 years using conservative growth assumptions. Use FCF *after* stock-based compensation (or explicitly haircut for dilution) so the value isn't overstated.
+2. **Pick a discount rate (r)** appropriate to the risk rather than a blanket number:
+   - Lower-risk (Quality / Dividend Compounder): 8–9%
+   - Moderate (GARP / Cyclical): 10–11%
+   - Higher-risk (Turnaround / Deep Value / Special Situation): 12–15%
+   - If the company's WACC is known, sanity-check against it. Default to 10% only if unsure.
+3. **Terminal value (Gordon growth):** TV = FCF₅ × (1 + g) / (r − g), with terminal growth g = 3–4% (never above long-run GDP growth, and g must be < r).
+4. **Discount to present value:** discount each of the 5 years' FCF and the terminal value back to today at r, then sum them. This sum is the **enterprise value (EV)**.
+5. **Bridge EV to equity value:** equity value = EV − total debt + cash & equivalents (i.e., subtract net debt).
+6. **Per-share intrinsic value** = equity value ÷ diluted shares outstanding.
+7. **Margin of safety** = (intrinsic value − current price) ÷ intrinsic value. A positive margin means the stock trades below your fair-value estimate.
 
 ### 5C. Scenario Analysis
 | Scenario | Assumptions | Implied Price | Probability |
@@ -192,13 +231,16 @@ Perform a simplified DCF:
 | Base | | | |
 | Bear | | | |
 
-- Expected Value = (Bull x P_bull) + (Base x P_base) + (Bear x P_bear)
+- Assign a probability to each scenario; the three probabilities must sum to 100% (P_bull + P_base + P_bear = 1).
+- Expected Value = (Bull × P_bull) + (Base × P_base) + (Bear × P_bear)
 - Is the expected value significantly above the current price?
 
 ### 5D. Valuation Context
 - If the stock looks expensive: is it "expensive for a reason" (compounding at 30%+) or genuinely overvalued?
 - If it looks cheap: is it a value trap (declining business) or a genuine mispricing?
 - What would need to be true for the current valuation to be justified?
+
+**Scoring anchors —** 5: meaningful discount to its own history, peers, and DCF fair value, with a wide margin of safety and expected value well above price. 3: roughly fairly valued, modest or no margin of safety, expected value near current price. 1: expensive vs history/peers/DCF with no growth justification, negative margin of safety, downside-skewed.
 
 **Sub-score: __ / 5**
 
@@ -230,6 +272,8 @@ For each risk, rate severity (high/medium/low) and probability:
 - Current short interest as % of float. Above 10% means significant bearish bets.
 - Is short interest increasing or decreasing?
 - Institutional ownership trend — are smart money investors accumulating or distributing?
+
+**Scoring anchors —** 5: multiple identifiable near-term catalysts, favorable positioning/sentiment, and a low or well-mitigated risk profile. 3: one plausible catalyst, neutral sentiment, moderate risks. 1: no clear catalyst, adverse sentiment (e.g., high and rising short interest with institutional distribution), or severe unmitigated risks.
 
 **Sub-score: __ / 5**
 
@@ -295,6 +339,8 @@ Based on the archetype(s) identified in Step 1, answer the specific questions be
 - Is FCF comfortably covering the dividend (FCF payout ratio below 60%)?
 - Does the company have a stated or demonstrated commitment to returning capital via dividends?
 
+**Scoring anchors —** 5: meets essentially all of the primary archetype's fit criteria. 3: meets about half; fit is partial or the thesis is unproven. 1: fails most fit criteria; the archetype label is a stretch.
+
 **Sub-score: __ / 5**
 
 ---
@@ -319,11 +365,11 @@ Use the weight profile from the **Weight Adjustments by Archetype** table in Ste
 
 | Weighted Score | Verdict | Action |
 |---------------|---------|--------|
-| 4.0 - 5.0 | **Strong Buy** | Full position (3-5% of portfolio) |
-| 3.5 - 3.9 | **Buy** | Starter position (1-2%), add on dips |
-| 3.0 - 3.4 | **Hold / Watchlist** | Monitor for improving score |
-| 2.5 - 2.9 | **Underperform** | Don't initiate; if held, review thesis |
-| 1.0 - 2.4 | **Sell / Avoid** | Exit or avoid entirely |
+| 4.00 – 5.00 | **Strong Buy** | Initiate toward target size (size per Position Sizing Guidance) |
+| 3.50 – 3.99 | **Buy** | Starter position, add on confirmation (size per Position Sizing Guidance) |
+| 3.00 – 3.49 | **Hold / Watchlist** | Monitor for an improving score; no new position |
+| 2.50 – 2.99 | **Underperform** | Don't initiate; if held, review thesis and consider trimming |
+| 1.00 – 2.49 | **Sell / Avoid** | Exit or avoid entirely |
 
 ### Confidence Level
 
@@ -339,10 +385,17 @@ Write a 3-sentence investment thesis:
 3. **What could go wrong:** The single biggest risk to the thesis.
 
 ### Position Sizing Guidance
-- Never put more than 5% of your portfolio in a single stock
-- Scale position size with confidence and archetype risk:
-  - Quality Compounder / Dividend Compounder (lower risk): High confidence = 4-5%, Medium = 2-3%
-  - GARP / Cyclical Recovery (moderate risk): High confidence = 3-4%, Medium = 1-2%
-  - Hidden Gem / Turnaround / Deep Value (higher risk): High confidence = 2-3%, Medium = 1%
-  - Special Situation (event-dependent): High confidence = 2-3%, Medium = 1%, Low = watchlist only
-- Set a stop-loss thesis (not just price) — define what would invalidate your thesis and force a re-evaluation
+
+Position size has two inputs: **conviction** (the verdict from the Decision Matrix) and **risk** (archetype tier × confidence). This section is the single source of truth for the actual percentage — the Decision Matrix only sets direction and conviction. Only **Buy** and **Strong Buy** verdicts get a position; **Hold** is watchlist-only, and **Underperform / Sell** get no position (exit if held).
+
+- **Never put more than 5% of your portfolio in a single stock.**
+- Find the archetype's risk tier, then read the cell for the verdict × confidence:
+
+| Archetype (risk tier) | Strong Buy / High conf | Strong Buy / Med conf | Buy / High conf | Buy / Med conf | Low conf (any) |
+|---|---|---|---|---|---|
+| Quality / Dividend Compounder (lower risk) | 4–5% | 2–3% | 2–3% | 1–2% | Watchlist |
+| GARP / Cyclical Recovery (moderate risk) | 3–4% | 1–2% | 1–2% | 1% | Watchlist |
+| Hidden Gem / Turnaround / Deep Value (higher risk) | 2–3% | 1% | 1% | 0.5–1% | Watchlist |
+| Special Situation (event-dependent) | 2–3% | 1% | 1% | 0.5–1% | Watchlist |
+
+- Set a **stop-loss thesis** (not just a price) — define what would invalidate your thesis and force a re-evaluation.
